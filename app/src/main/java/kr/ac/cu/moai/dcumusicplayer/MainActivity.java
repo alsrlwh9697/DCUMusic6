@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     String selectedMP3;
     ListViewMP3Adapter adapter;
 
-    String mp3path = Environment.getExternalStorageDirectory().getPath() + "/";
+    String mp3path = Environment.getExternalStorageDirectory().getPath() + "/Music/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,17 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ListViewMP3Adapter(this, mp3files);
         listViewMP3.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listViewMP3.setAdapter(adapter);
+        listViewMP3.setOnItemClickListener((parent, view, position, id) -> {
+            selectedMP3 = mp3files.get(position);
+            Log.i("DCU_MP", selectedMP3);
+
+            Intent intent = new Intent(getApplicationContext(), PlayerActivity.class);
+            intent.putExtra("mp3", selectedMP3);
+            startActivity(intent);
+        });
+
+
+
         listViewMP3.setOnItemClickListener((parent, view, position, id) -> {
             selectedMP3 = mp3files.get(position);
             Log.i("DCU_MP", selectedMP3);

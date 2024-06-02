@@ -43,6 +43,8 @@ public class ListViewMP3Adapter extends BaseAdapter {
     @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+
         try (MediaMetadataRetriever retriever = new MediaMetadataRetriever()) {
             @SuppressLint({"ViewHolder", "InflateParams"})
             View view = LayoutInflater.from(context).inflate(R.layout.list_view_mp3, null);
